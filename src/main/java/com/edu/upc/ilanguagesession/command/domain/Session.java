@@ -1,18 +1,19 @@
 package com.edu.upc.ilanguagesession.command.domain;
 
-import com.edu.upc.ilanguagesession.command.domain.contrats.commands.EditSesssion;
-import com.edu.upc.ilanguagesession.command.domain.contrats.commands.RegisterSession;
-import com.edu.upc.ilanguagesession.command.domain.contrats.events.SessionEdited;
-import com.edu.upc.ilanguagesession.command.domain.contrats.events.SessionRegistered;
+import com.edu.upc.ilanguagesession.command.domain.contrats.commands.*;
+import com.edu.upc.ilanguagesession.command.domain.contrats.events.*;
 import org.axonframework.commandhandling.CommandHandler;
+import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
+import org.axonframework.spring.stereotype.Aggregate;
 import org.springframework.cglib.core.Local;
 
 import java.time.Instant;
 import java.time.LocalDate;
 import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
+@Aggregate
 public class Session {
     @AggregateIdentifier
     private String sessionId;
@@ -67,5 +68,13 @@ public class Session {
         state =event.getState();
         topic =event.getTopic();
         information =event.getInformation();
+    }
+
+
+    @EventHandler
+    protected void on(SessionEdited event) {
+        topic =event.getTopic();
+        information =event.getInformation();
+        state =event.getState();
     }
 }

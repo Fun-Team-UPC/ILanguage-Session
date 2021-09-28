@@ -1,22 +1,19 @@
 package com.edu.upc.ilanguagesession.config;
 
-import org.axonframework.commandhandling.SimpleCommandBus;
-import org.axonframework.eventhandling.EventBus;
-import org.axonframework.messaging.interceptors.BeanValidationInterceptor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.edu.upc.ilanguagesession.command.domain.Session;
+import org.axonframework.eventsourcing.EventSourcingRepository;
+import org.axonframework.eventsourcing.eventstore.EventStore;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.axonframework.modelling.command.Repository;
 
 @Configuration
 public class AxonConfig {
 
-   // @Autowired
-    //private AxonConfiguration axonConfiguration;
-    @Autowired
-    private EventBus eventBus;
-
-    @Autowired
-    public void configure(@Qualifier( "localSegment") SimpleCommandBus simpleCommandBus) {
-        simpleCommandBus.registerDispatchInterceptor(new BeanValidationInterceptor<>());
+    @Bean
+    public Repository<Session>eventSourcingRepository(EventStore eventStore) {
+        return EventSourcingRepository.builder(Session.class)
+                .eventStore(eventStore)
+                .build();
     }
 }
