@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-@ProcessingGroup("session")
+@ProcessingGroup("sessionInfra")
 public class SessionEventHandler {
     private final SessionInfraRepository sessionInfraRepository;
 

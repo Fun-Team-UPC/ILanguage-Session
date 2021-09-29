@@ -4,16 +4,18 @@ import com.edu.upc.ilanguagesession.command.application.dto.request.EditSessionR
 import com.edu.upc.ilanguagesession.command.domain.Session;
 import com.edu.upc.ilanguagesession.command.infra.SessionInfra;
 import com.edu.upc.ilanguagesession.command.infra.SessionInfraRepository;
+import com.edu.upc.ilanguagesession.common.application.Notification;
 import org.axonframework.messaging.unitofwork.DefaultUnitOfWork;
 import org.axonframework.messaging.unitofwork.UnitOfWork;
 import org.axonframework.modelling.command.AggregateNotFoundException;
 
 import org.axonframework.modelling.command.Repository;
-import pe.com.ilanguage.common.application.Notification;
+import org.springframework.stereotype.Component;
 
 //Cambiar esta dependency x la common!!
 import java.util.Optional;
 
+@Component
 public class EditSessionValidator {
     private final SessionInfraRepository sessionInfraRepository;
     private final Repository<Session> sessionRepository;

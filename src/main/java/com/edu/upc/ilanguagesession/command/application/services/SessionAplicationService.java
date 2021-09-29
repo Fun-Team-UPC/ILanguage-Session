@@ -9,15 +9,17 @@ import com.edu.upc.ilanguagesession.command.application.validators.RegisterSessi
 import com.edu.upc.ilanguagesession.command.domain.contrats.commands.EditSesssion;
 import com.edu.upc.ilanguagesession.command.domain.contrats.commands.RegisterSession;
 import com.edu.upc.ilanguagesession.command.infra.SessionInfraRepository;
+import com.edu.upc.ilanguagesession.common.application.Notification;
+import com.edu.upc.ilanguagesession.common.application.Result;
+import com.edu.upc.ilanguagesession.common.application.ResultType;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 
-import pe.com.ilanguage.common.application.Result;
-import pe.com.ilanguage.common.application.Notification;
-import pe.com.ilanguage.common.application.ResultType;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
+@Component
 public class SessionAplicationService {
 
     private final RegisterSessionValidator registerSessionValidator;
@@ -71,7 +73,7 @@ public class SessionAplicationService {
         if (notification.hasErrors()){
             return Result.failure(notification);
         }
-        EditSessionResponse editSesssionResponse =new EditSessionResponse(
+        EditSessionResponse editSesssion =new EditSessionResponse(
                 editSessionRequest.getSessionId().trim(),
                 editSessionRequest.getStartAt(),
                 editSessionRequest.getEndAt(),
@@ -80,6 +82,22 @@ public class SessionAplicationService {
                 editSessionRequest.getTopic().trim(),
                 editSessionRequest.getInformation().trim()
         );
-        return Result.success(editSesssionResponse);
+
+        CompletableFuture<Object> future = commandGateway.send(editSesssion);
+        CompletableFuture<ResultType> futureResult = future.handle((ok, ex) -> (ex != null) ? ResultType.FAILURE : ResultType.SUCCESS);
+        ResultType resultType = futureResult.get();
+        if (resultType == ResultType.FAILURE) {
+            throw new Exception();
+        }
+            EditSessionResponse editSessionResponse = new EditSessionResponse(
+                editSesssion.getSessionId(),
+                editSesssion.getStartAt(),
+                editSesssion.getEndAt(),
+                editSesssion.getLink(),
+                editSesssion.getState(),
+                editSesssion.getTopic(),
+                editSesssion.getInformation()
+        );
+        return Result.success(editSessionResponse);
     }
 }
