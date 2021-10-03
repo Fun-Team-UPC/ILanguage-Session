@@ -4,7 +4,8 @@ import com.edu.upc.ilanguagesession.command.application.dto.request.EditSessionR
 import com.edu.upc.ilanguagesession.command.domain.Session;
 import com.edu.upc.ilanguagesession.command.infra.SessionInfra;
 import com.edu.upc.ilanguagesession.command.infra.SessionInfraRepository;
-import com.edu.upc.ilanguagesession.common.application.Notification;
+//import com.edu.upc.ilanguagesession.common.application.Notification;
+import pe.com.ilanguage.common.application.Notification;
 import org.axonframework.messaging.unitofwork.DefaultUnitOfWork;
 import org.axonframework.messaging.unitofwork.UnitOfWork;
 import org.axonframework.modelling.command.AggregateNotFoundException;
@@ -41,11 +42,6 @@ public class EditSessionValidator {
         if(state.isEmpty()){notification.addError("state is required");}
         String link = editSessionRequest.getTopic().trim();
         if(link.isEmpty()){notification.addError("link is required");}
-
-        Optional<SessionInfra> sessionInfra = sessionInfraRepository.getByLinkForDistinctSessionId(link, sessionId);
-        if (sessionInfra.isPresent()){
-            notification.addError("Link is taken");
-        }
 
         return notification;
     }

@@ -1,14 +1,12 @@
 package com.edu.upc.ilanguagesession.command.application.handlers;
 
-import com.edu.upc.ilanguagesession.command.domain.Session;
-import com.edu.upc.ilanguagesession.command.domain.contrats.events.SessionEdited;
-import com.edu.upc.ilanguagesession.command.domain.contrats.events.SessionRegistered;
-import com.edu.upc.ilanguagesession.command.infra.*;
+import com.edu.upc.ilanguagesession.command.infra.SessionInfra;
+import com.edu.upc.ilanguagesession.command.infra.SessionInfraRepository;
+import contracts.events.SessionEdited;
+import contracts.events.SessionRegistered;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 @ProcessingGroup("sessionInfra")
@@ -26,8 +24,6 @@ public class SessionEventHandler {
 
     @EventHandler
     public void on(SessionEdited event) {
-        Optional<SessionInfra> SessionInfraOptional = sessionInfraRepository.getLinkBySessionId(event.getSessionId());
-        SessionInfraOptional.ifPresent(sessionInfraRepository::delete);
         sessionInfraRepository.save(new SessionInfra(event.getLink(), event.getSessionId()));
     }
 }

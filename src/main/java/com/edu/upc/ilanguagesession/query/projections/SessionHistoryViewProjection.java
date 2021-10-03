@@ -1,8 +1,7 @@
 package com.edu.upc.ilanguagesession.query.projections;
 
-import com.edu.upc.ilanguagesession.command.domain.SessionStatus;
-import com.edu.upc.ilanguagesession.command.domain.contrats.events.SessionEdited;
-import com.edu.upc.ilanguagesession.command.domain.contrats.events.SessionRegistered;
+import contracts.events.SessionEdited;
+import contracts.events.SessionRegistered;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.eventhandling.Timestamp;
 import org.springframework.stereotype.Component;

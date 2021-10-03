@@ -6,7 +6,6 @@ import java.time.LocalDate;
 
 @Value
 public class RegisterSessionRequest {
-	private String sessionId;
 	private LocalDate startAt;
 	private LocalDate endAt;
 	private String link;

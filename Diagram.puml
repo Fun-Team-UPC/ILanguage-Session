@@ -1,0 +1,87 @@
+@startuml
+'https://plantuml.com/class-diagram
+EditSessionRequest --|> SessionCommandController
+EditSessionResponse --|> SessionCommandController
+'RegisterSessionRequest --|> SessionCommandController
+'RegisterSessionResponse --|> SessionCommandController
+SessionAplicationService --|> SessionCommandController
+
+SessionInfra --|> SessionCommandController
+SessionInfraRepository --|> SessionCommandController
+
+EditSessionRequest --|> SessionAplicationService
+'RegisterSessionRequest --|> SessionAplicationService
+EditSessionResponse --|> SessionAplicationService
+'RegisterSessionResponse --|> SessionAplicationService
+EditSessionValidator --|> SessionAplicationService
+'RegisterSessionValidator --|> SessionAplicationService
+
+EditSessionRequest --|> EditSessionValidator
+Session --|> EditSessionValidator
+SessionInfraRepository --|> EditSessionValidator
+
+SessionInfraRepository --|> SessionEventHandler
+SessionInfra --|> SessionEventHandler
+
+
+'command/api
+class SessionCommandController {
+}
+'command/application/dto/request
+class EditSessionRequest {
+}
+class RegisterSessionRequest {
+}
+'command/application/dto/response
+class EditSessionResponse {
+}
+class RegisterSessionResponse {
+}
+'command/application/handlers
+class SessionEventHandler {
+}
+'command/application/services
+class SessionAplicationService {
+}
+'command/application/validators
+class EditSessionValidator {
+}
+class RegisterSessionValidator {
+}
+
+'command/domain
+class Session {
+}
+enum SessionStatus {
+}
+'command/infra
+class SessionInfra {
+}
+interface SessionInfraRepository {
+}
+'command/config
+class AxonConfig {
+}
+class SwaggerConfig {
+}
+'command/query/api
+class SessionQueryController {
+}
+'command/query/projections
+class SessionHistoryView {
+}
+class SessionHistoryViewProjection {
+}
+interface SessionHistoryViewRepository {
+}
+class SessionView {
+}
+class SessionViewProjection {
+}
+interface SessionViewRepository {
+}
+'command/query
+class ILanguageSessionApplication {
+}
+
+@enduml

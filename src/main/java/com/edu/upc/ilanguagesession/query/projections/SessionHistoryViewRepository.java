@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface SessionHistoryViewRepository extends JpaRepository<SessionView, String> {
-    @Query(value = "SELECT * FROM customer_history_view WHERE customer_history_id = (SELECT MAX(customer_history_id) FROM customer_history_view WHERE customer_id = :customerId)", nativeQuery = true)
-    Optional<SessionHistoryView> getLastBySessionId(String customerId);
+public interface SessionHistoryViewRepository extends JpaRepository<SessionHistoryView, String> {
+    @Query(value = "SELECT * FROM session_history_view WHERE session_history_id = (SELECT MAX(session_history_id) FROM session_history_view WHERE session_id = :sessionId)", nativeQuery = true)
+    Optional<SessionHistoryView> getLastBySessionId(String sessionId);
 
-    @Query(value = "SELECT * FROM customer_history_view WHERE customer_id = :customerId ORDER BY created_at", nativeQuery = true)
-    List<SessionHistoryView> save(SessionHistoryView customerId);
+    @Query(value = "SELECT * FROM session_history_view WHERE session_id = :sessionId ORDER BY created_at", nativeQuery = true)
+    List<SessionHistoryView> getHistoryBySessionId(String sessionId);
 }

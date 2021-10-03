@@ -1,7 +1,10 @@
 package com.edu.upc.ilanguagesession.command.domain;
 
-import com.edu.upc.ilanguagesession.command.domain.contrats.commands.*;
-import com.edu.upc.ilanguagesession.command.domain.contrats.events.*;
+
+import contracts.commands.EditSesssion;
+import contracts.commands.RegisterSession;
+import contracts.events.SessionEdited;
+import contracts.events.SessionRegistered;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;

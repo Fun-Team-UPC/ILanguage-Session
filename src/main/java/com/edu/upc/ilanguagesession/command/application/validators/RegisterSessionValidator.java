@@ -3,7 +3,8 @@ package com.edu.upc.ilanguagesession.command.application.validators;
 import com.edu.upc.ilanguagesession.command.application.dto.request.RegisterSessionRequest;
 import com.edu.upc.ilanguagesession.command.infra.SessionInfra;
 import com.edu.upc.ilanguagesession.command.infra.SessionInfraRepository;
-import com.edu.upc.ilanguagesession.common.application.Notification;
+//import com.edu.upc.ilanguagesession.common.application.Notification;
+import pe.com.ilanguage.common.application.Notification;
 import org.springframework.stereotype.Component;
 //Cambiar esta dependency x la common!!
 import java.util.Optional;

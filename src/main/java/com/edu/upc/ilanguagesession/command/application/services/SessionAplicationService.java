@@ -6,12 +6,15 @@ import com.edu.upc.ilanguagesession.command.application.dto.response.EditSession
 import com.edu.upc.ilanguagesession.command.application.dto.response.RegisterSessionResponse;
 import com.edu.upc.ilanguagesession.command.application.validators.EditSessionValidator;
 import com.edu.upc.ilanguagesession.command.application.validators.RegisterSessionValidator;
-import com.edu.upc.ilanguagesession.command.domain.contrats.commands.EditSesssion;
-import com.edu.upc.ilanguagesession.command.domain.contrats.commands.RegisterSession;
+
 import com.edu.upc.ilanguagesession.command.infra.SessionInfraRepository;
-import com.edu.upc.ilanguagesession.common.application.Notification;
-import com.edu.upc.ilanguagesession.common.application.Result;
-import com.edu.upc.ilanguagesession.common.application.ResultType;
+//import com.edu.upc.ilanguagesession.common.application.Notification;
+//import com.edu.upc.ilanguagesession.common.application.Result;
+//import com.edu.upc.ilanguagesession.common.application.ResultType;
+import contracts.commands.RegisterSession;
+import pe.com.ilanguage.common.application.ResultType;
+import pe.com.ilanguage.common.application.Result;
+import pe.com.ilanguage.common.application.Notification;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 
 import org.springframework.stereotype.Component;
@@ -48,7 +51,6 @@ public class SessionAplicationService {
                 registerSessionRequest.getState().trim(),
                 registerSessionRequest.getTopic().trim(),
                 registerSessionRequest.getInformation().trim()
-
         );
         CompletableFuture<Object> future = commandGateway.send(registerSession);
         CompletableFuture<ResultType> futureResult =future.handle((ok, ex) -> (ex != null ? ResultType.FAILURE : ResultType.SUCCESS));
