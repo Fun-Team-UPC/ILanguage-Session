@@ -19,7 +19,15 @@ public class SessionEventHandler {
 
     @EventHandler
     public void on(SessionRegistered event) {
-        sessionInfraRepository.save(new SessionInfra(event.getLink(),event.getSessionId()));
+        sessionInfraRepository.save(new SessionInfra(
+                event.getSessionId(),
+                event.getStartAt(),
+                event.getEndAt(),
+                event.getLink(),
+                event.getState(),
+                event.getTopic(),
+                event.getInformation()
+        ));
     }
 
     @EventHandler

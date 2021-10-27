@@ -7,6 +7,8 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 public class ILanguageSessionApplication {
 
-    public static void main(String[] args) {SpringApplication.run(ILanguageSessionApplication.class, args);}
+    public static void main(String[] args) {
+        SpringApplication.run(ILanguageSessionApplication.class, args);
+    }
 
 }

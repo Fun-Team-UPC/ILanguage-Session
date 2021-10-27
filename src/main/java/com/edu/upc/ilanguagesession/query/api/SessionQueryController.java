@@ -7,6 +7,10 @@ import com.edu.upc.ilanguagesession.query.projections.SessionView;
 import com.edu.upc.ilanguagesession.query.projections.SessionViewRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +35,12 @@ public class SessionQueryController {
         this.sessionHistoryViewRepository = sessionHistoryViewRepository;
     }
 
+    @Operation(summary="Get all sessions", description="This endpoint returns all the available sessions for Ilanguage Application", tags = {"Session"} )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description="All Session returned", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "404", description="Session Not Found", content = @Content(mediaType = "application/json"))
+
+    })
     @GetMapping("")
     @ApiOperation(value = "Get All Sessions", response = List.class)
     public ResponseEntity<List<SessionView>> GetAll() {
@@ -41,6 +51,12 @@ public class SessionQueryController {
         }
     }
 
+    @Operation(summary="Get session by id", description="This endpoint returns an specific session by the given ID Ilanguage Application", tags = {"Session"} )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description="Session returned", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "404", description="Session Not Found", content = @Content(mediaType = "application/json"))
+
+    })
     @GetMapping(path = "/id/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Get Session by id", response = SessionView.class)
     public ResponseEntity<SessionView> getById(@PathVariable("id") String id) {
@@ -55,6 +71,12 @@ public class SessionQueryController {
         }
     }
 
+    @Operation(summary="Get session by name", description="This endpoint returns an specific session by the given ID Ilanguage Application", tags = {"Session"} )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description="Session returned", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "404", description="Session Not Found", content = @Content(mediaType = "application/json"))
+
+    })
     @GetMapping(path = "/session/{link}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Get session by link", response = SessionView.class)
     public ResponseEntity<SessionView> getByDocument(@PathVariable("dni") String link) {
@@ -69,6 +91,12 @@ public class SessionQueryController {
         }
     }
 
+    @Operation(summary="Get history session by id", description="This endpoint returns the list with the history of an specific session by the given ID Ilanguage Application", tags = {"Session"} )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description="Session returned", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "404", description="Session Not Found", content = @Content(mediaType = "application/json"))
+
+    })
     @GetMapping("/history/{id}")
     @ApiOperation(value = "Get session history", response = List.class)
     public ResponseEntity<List<SessionHistoryView>> getHistoryById(@PathVariable("id") String id) {

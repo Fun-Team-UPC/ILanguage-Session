@@ -27,6 +27,5 @@ public class SessionInfra {
     public SessionInfra(String link, String sessionId) {
         this.sessionId=sessionId;
         this.link = link;
-
     }
 }

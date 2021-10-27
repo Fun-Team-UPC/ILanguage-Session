@@ -65,6 +65,7 @@ public class Session {
 
     @EventSourcingHandler
     protected void on(SessionRegistered event) {
+        sessionId = event.getSessionId();
         startAt =event.getStartAt();
         endAt =event.getEndAt();
         link =event.getLink();
