@@ -50,7 +50,8 @@ public class SessionAplicationService {
                 registerSessionRequest.getLink().trim(),
                 registerSessionRequest.getState().trim(),
                 registerSessionRequest.getTopic().trim(),
-                registerSessionRequest.getInformation().trim()
+                registerSessionRequest.getInformation().trim(),
+                registerSessionRequest.getExternalToolId().trim()
         );
         CompletableFuture<Object> future = commandGateway.send(registerSession);
         CompletableFuture<ResultType> futureResult =future.handle((ok, ex) -> (ex != null ? ResultType.FAILURE : ResultType.SUCCESS));
@@ -65,7 +66,8 @@ public class SessionAplicationService {
                 registerSession.getLink(),
                 registerSession.getState(),
                 registerSession.getTopic(),
-                registerSession.getInformation()
+                registerSession.getInformation(),
+                registerSession.getExternalToolId()
         );
         return Result.success(registerSessionResponseDTO);
     }
@@ -79,7 +81,6 @@ public class SessionAplicationService {
                 editSessionRequest.getSessionId().trim(),
                 editSessionRequest.getStartAt(),
                 editSessionRequest.getEndAt(),
-                editSessionRequest.getLink().trim(),
                 editSessionRequest.getState().trim(),
                 editSessionRequest.getTopic().trim(),
                 editSessionRequest.getInformation().trim()
@@ -95,7 +96,6 @@ public class SessionAplicationService {
                 editSesssion.getSessionId(),
                 editSesssion.getStartAt(),
                 editSesssion.getEndAt(),
-                editSesssion.getLink(),
                 editSesssion.getState(),
                 editSesssion.getTopic(),
                 editSesssion.getInformation()

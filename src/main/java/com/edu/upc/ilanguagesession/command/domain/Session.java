@@ -26,21 +26,23 @@ public class Session {
     private String state;
     private String topic;
     private String information;
+    private String externalToolId;
 
     public Session(){}
 
     @CommandHandler
-    public Session(RegisterSession command) {
+    public Session(RegisterSession registerSession) {
         Instant now =Instant.now();
         apply(
                 new SessionRegistered(
-                        command.getSessionId(),
-                        command.getStartAt(),
-                        command.getEndAt(),
-                        command.getLink(),
-                        command.getState(),
-                        command.getTopic(),
-                        command.getInformation(),
+                        registerSession.getSessionId(),
+                        registerSession.getStartAt(),
+                        registerSession.getEndAt(),
+                        registerSession.getLink(),
+                        registerSession.getState(),
+                        registerSession.getTopic(),
+                        registerSession.getInformation(),
+                        registerSession.getExternalToolId(),
                         now
                 )
         );
@@ -54,7 +56,6 @@ public class Session {
                         command.getSessionId(),
                         command.getStartAt(),
                         command.getEndAt(),
-                        command.getLink(),
                         command.getState(),
                         command.getTopic(),
                         command.getInformation(),
@@ -72,13 +73,16 @@ public class Session {
         state =event.getState();
         topic =event.getTopic();
         information =event.getInformation();
+        externalToolId = event.getExternalToolId();
     }
 
 
     @EventHandler
     protected void on(SessionEdited event) {
+        startAt = event.getStartAt();
+        endAt = event.getStartAt();
+        state =event.getState();
         topic =event.getTopic();
         information =event.getInformation();
-        state =event.getState();
     }
 }

@@ -14,4 +14,5 @@ public class RegisterSessionRequest {
 	private String state;
 	private String topic;
 	private String information;
+	private String externalToolId;
 }

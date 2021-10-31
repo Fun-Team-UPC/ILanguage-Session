@@ -32,6 +32,6 @@ public class SessionEventHandler {
 
     @EventHandler
     public void on(SessionEdited event) {
-        sessionInfraRepository.save(new SessionInfra(event.getLink(), event.getSessionId()));
+        sessionInfraRepository.save(new SessionInfra(event.getTopic(), event.getSessionId()));
     }
 }

@@ -24,8 +24,8 @@ public class SessionInfra {
     private String information;
 
 
-    public SessionInfra(String link, String sessionId) {
+    public SessionInfra(String topic, String sessionId) {
         this.sessionId=sessionId;
-        this.link = link;
+        this.topic = topic;
     }
 }

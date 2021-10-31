@@ -9,7 +9,6 @@ public class EditSessionResponse {
     private String sessionId;
     private LocalDate startAt;
     private LocalDate endAt;
-    private String link;
     private String state;
     private String topic;
     private String information;

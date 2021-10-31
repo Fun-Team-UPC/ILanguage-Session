@@ -29,6 +29,7 @@ public interface SessionInfraRepository extends JpaRepository<SessionInfra, Stri
     @Query("SELECT s FROM SessionInfra s WHERE s.information = ?1")
     public Optional<SessionInfra>findByInformation(String information);
 
+
     @Query("SELECT s FROM SessionInfra s WHERE s.sessionId = ?1")
     public Optional<SessionInfra>findSessionBySessionId(String sessionId);
 

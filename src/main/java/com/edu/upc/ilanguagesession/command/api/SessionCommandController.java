@@ -43,7 +43,6 @@ public class SessionCommandController {
                 if (result.isSuccess()){
                     return ApiController.created(result.getSuccess());
                 }
-//            result.getFailure().getErrors()
             return ApiController.error(result.getFailure().getErrors());
         } catch (Exception e) {
             return ApiController.serverError();

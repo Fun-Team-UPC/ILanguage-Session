@@ -31,7 +31,6 @@ public class SessionHistoryViewProjection {
             sessionHistoryView = new SessionHistoryView(sessionHistoryView);
             sessionHistoryView.setStartAt(event.getStartAt());
             sessionHistoryView.setEndAt(event.getEndAt());
-            sessionHistoryView.setTopic(event.getLink());
             sessionHistoryView.setState(event.getState());
             sessionHistoryView.setTopic(event.getTopic());
             sessionHistoryView.setInformation(event.getInformation());
