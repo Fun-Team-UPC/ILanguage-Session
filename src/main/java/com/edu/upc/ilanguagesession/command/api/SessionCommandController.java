@@ -8,10 +8,6 @@ import com.edu.upc.ilanguagesession.command.application.services.SessionAplicati
 
 import com.edu.upc.ilanguagesession.ILanguageSessionApplication;
 
-//import com.edu.upc.ilanguagesession.common.api.ApiController;
-//import com.edu.upc.ilanguagesession.common.application.Notification;
-//import com.edu.upc.ilanguagesession.common.application.Result;
-
 import pe.com.ilanguage.common.api.ApiController;
 import pe.com.ilanguage.common.application.Result;
 import pe.com.ilanguage.common.application.Notification;

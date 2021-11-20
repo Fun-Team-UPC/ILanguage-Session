@@ -3,7 +3,7 @@ package com.edu.upc.ilanguagesession;
 import com.edu.upc.ilanguagesession.command.application.services.SessionAplicationService;
 import com.edu.upc.ilanguagesession.command.infra.SessionInfra;
 import com.edu.upc.ilanguagesession.command.infra.SessionInfraRepository;
-import contracts.events.SessionRegistered;
+//import contracts.events.SessionRegistered;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -46,17 +46,17 @@ class ILanguageSessionApplicationTests {
     }
 
 
-    @Test
-    @DisplayName("Get subscription by name with valid name then return true")
-    public void ssd(){
-        //https://docs.axoniq.io/reference-guide/v/3.3/part-ii-domain-logic/testing
-        /*fixture.given()
-                .when(new RegisterSubscription("sddsadsadsad","sadasd",5,100))
-                .expectSuccessfulHandlerExecution()
-                .expectReturnValue(new RegisterSubscriptionRes("sddsadsadsad","sadasd",5,100));
-               // .expectNoEvents(new SubscriptionRegistered("sddsadsadsad","sadasd", 5,100, Instant.now()));*/
-        apply(new SessionRegistered("sddsadsadsad",null,null,"gg","gg","gg","gg", Instant.now()));
-        assertEquals(1, AggregateLifecycle.isLive());
-
-    }
+//    @Test
+//    @DisplayName("Get subscription by name with valid name then return true")
+//    public void ssd(){
+//        //https://docs.axoniq.io/reference-guide/v/3.3/part-ii-domain-logic/testing
+//        /*fixture.given()
+//                .when(new RegisterSubscription("sddsadsadsad","sadasd",5,100))
+//                .expectSuccessfulHandlerExecution()
+//                .expectReturnValue(new RegisterSubscriptionRes("sddsadsadsad","sadasd",5,100));
+//               // .expectNoEvents(new SubscriptionRegistered("sddsadsadsad","sadasd", 5,100, Instant.now()));*/
+//        apply(new SessionRegistered("sddsadsadsad",null,null,"gg","gg","gg","gg", Instant.now()));
+//        assertEquals(1, AggregateLifecycle.isLive());
+//
+//    }
 }
