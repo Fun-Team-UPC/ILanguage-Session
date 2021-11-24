@@ -8,6 +8,9 @@ import com.edu.upc.ilanguagesession.command.application.services.SessionAplicati
 
 import com.edu.upc.ilanguagesession.ILanguageSessionApplication;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import pe.com.ilanguage.common.api.ApiController;
 import pe.com.ilanguage.common.application.Result;
 import pe.com.ilanguage.common.application.Notification;
@@ -32,6 +35,21 @@ public class SessionCommandController {
         this.commandGateway = commandGateway;
     }
 
+    @Operation(summary = "Post session", description = "This endpoint is for saving a new Session for Ilanguage Application")
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(
+            content = @Content(
+                    mediaType = "application/json",
+                    examples = {
+                            @ExampleObject(value = "{\"startAt\": \"10-12-2021 02:30:00\", " +
+                                    "\"endAt\": \"10-12-2021 03:30:00\", " +
+                                    "\"link\": \"https://us04web.zoom.us/j/79547183125?pwd=NVZGcjdrQjhnR1lTUENCUXBKaDJ0Zz09\", " +
+                                    "\"state\": \"Inactive\", " +
+                                    "\"topic\": \"English\", " +
+                                    "\"information\": \"Verb To Be\", " +
+                                    "\"externalToolId\": 1}")
+                    }
+            )
+    )
     @PostMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> register(@RequestBody RegisterSessionRequest registerSessionRequest){
         try {
@@ -45,6 +63,19 @@ public class SessionCommandController {
         }
     }
 
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(
+            content = @Content(
+                    mediaType = "application/json",
+                    examples = {
+                            @ExampleObject(value = "{\"sessionId\": 1, " +
+                                    "\"startAt\": \"10-12-2021 02:30:00\", " +
+                                    "\"endAt\": \"10-12-2021 03:30:00\", " +
+                                    "\"state\": \"Inactive\", " +
+                                    "\"topic\": \"English\", " +
+                                    "\"information\": \"Verb To Be\"}")
+                    }
+            )
+    )
     @PutMapping("/{sessionId}")
     public ResponseEntity<Object> edit(@PathVariable("sessionId") String sessionId, @RequestBody EditSessionRequest editSessionRequest){
         try {
