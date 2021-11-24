@@ -87,6 +87,18 @@
             <artifactId>axon-configuration</artifactId>
             <version>4.5.3</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>ILanguage-Session-contracts</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>pe.edu.upc</groupId>
+            <artifactId>banking-common</artifactId>
+            <version>0.1.2</version>
+        </dependency>
     </dependencies>
 
     <build>
