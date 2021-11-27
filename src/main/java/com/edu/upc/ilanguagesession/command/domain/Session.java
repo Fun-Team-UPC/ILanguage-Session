@@ -32,7 +32,7 @@ public class Session {
 
     @CommandHandler
     public Session(RegisterSession registerSession) {
-        Instant now =Instant.now();
+//        Instant now =Instant.now();
         apply(
                 new SessionRegistered(
                         registerSession.getSessionId(),
@@ -42,15 +42,14 @@ public class Session {
                         registerSession.getState(),
                         registerSession.getTopic(),
                         registerSession.getInformation(),
-                        registerSession.getExternalToolId(),
-                        now
+                        registerSession.getExternalToolId()
                 )
         );
     }
 
     @CommandHandler
     public void handle(EditSesssion command){
-        Instant now =Instant.now();
+//        Instant now =Instant.now();
         apply(
                 new SessionEdited(
                         command.getSessionId(),
@@ -58,8 +57,7 @@ public class Session {
                         command.getEndAt(),
                         command.getState(),
                         command.getTopic(),
-                        command.getInformation(),
-                        now
+                        command.getInformation()
                 )
         );
     }

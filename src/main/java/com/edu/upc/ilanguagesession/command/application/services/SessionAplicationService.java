@@ -42,6 +42,9 @@ public class SessionAplicationService {
         if (notification.hasErrors()) {
             return Result.failure(notification);
         }
+
+        OcurredOn = Instant now =Instant.now();
+
         String sessionId = UUID.randomUUID().toString();
         RegisterSession registerSession = new RegisterSession(
                 sessionId,
@@ -51,7 +54,8 @@ public class SessionAplicationService {
                 registerSessionRequest.getState().trim(),
                 registerSessionRequest.getTopic().trim(),
                 registerSessionRequest.getInformation().trim(),
-                registerSessionRequest.getExternalToolId().trim()
+                registerSessionRequest.getExternalToolId().trim(),
+                OcurredOn
         );
         CompletableFuture<Object> future = commandGateway.send(registerSession);
         CompletableFuture<ResultType> futureResult =future.handle((ok, ex) -> (ex != null ? ResultType.FAILURE : ResultType.SUCCESS));
